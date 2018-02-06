@@ -1,0 +1,59 @@
+﻿@model IEnumerable<Drewno_MVC.Models.ResourcesFile>
+@section Scripts
+{
+    <script src="@Url.Content("~/Scripts/treescript.js")"></script>
+}
+@{
+    ViewBag.Title = "Index";
+}
+<style>
+    .FileCollection {
+        display: inline-block;
+    }
+   
+    
+   
+
+    
+</style>
+               
+        
+    @foreach (Drewno_MVC.Models.ResourcesFile element in Model)
+    {
+    <ul class="ullshow">
+       <li class="FileCollection"> @element.file 
+           <ul style="display: none;" id="ullista">
+               @foreach (var key in element.Keys)
+               {
+                <li class="KeysCollection">
+                    @key.key
+                    <ul style="display: none;" id="ullistb" >
+                        <li>
+                           <span>EN: </span>
+                           <span class="englishValue">@key.En</span>
+                        </li>
+                        @foreach (var item in key.OtherLanguages)
+                        {
+                            <li class="OtherLanguagesCollection">
+                                <span class="otherKey" >@item.Key</span>
+                                
+                                <span class="OtherLanguageValuesCollection" style="display:none">
+                                <input type="text" value="@item.Value" class="otherValue"/>
+                                <input type="submit" value="Save" class="button">
+                                </span>
+                                
+                            </li>
+                        }
+                        
+                    </ul>
+                </li>
+               }            
+            </ul>
+      </li>
+   </ul>         
+    }
+
+  
+
+
+
